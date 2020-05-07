@@ -73,7 +73,7 @@ piloto.reacoes.protecaocinetica = 10 + piloto.reacoes.armadura[0] + piloto.reaco
 piloto.reacoes.protecaoenergia = 10 + piloto.reacoes.armadura[1] + piloto.reacoes.escudo[1]
 
 //----------------------------------------------------------------------------------------------------------------
-const mech = {
+var mech = {
     geral: {
         nível: 1,
         chassi: 'berserker',
@@ -168,13 +168,41 @@ mech.reacoes.psique = 10 + mech.atributos.inteligencia + piloto.geral.proficienc
 //mech.reacoes.protecaocinetica = 10 + mech.reacoes.armadura[0] + mech.reacoes.escudo[0],
 //mech.reacoes.protecaoenergia = 10 + mech.reacoes.armadura[1] + mech.reacoes.escudo[1]
 
-console.log(mech.componentes.cabeca.hasOwnProperty('ap'))
-console.log(mech.componentes.cabeca.ap)
+//console.log(mech.componentes.cabeca.hasOwnProperty('ap'))
+//console.log(mech.componentes.cabeca.ap)
 
-for (let item in mech.componentes){
-    if (item.hasOwnProperty('ap')){
-        console.log(item.ap)
-    }else {
-        console.log(item, 'não possui ap')
-    }
+// function buscarDados(onde, oque){
+//     for (let item in onde){
+//         if (item.hasOwnProperty(oque)){
+//             console.log(item.oque)
+//         }else {
+//             console.log(item, 'não possui', oque)
+//         }
+//     }
+// }
+
+function buscarDados(obj, key) {
+    var totalAp = [];
+
+    Object.values(obj).forEach(item => {
+        if ("undefined" !== typeof(item[key])) {
+            totalAp.push(item[key]);
+        }
+    });
+
+    totalAp = totalAp.reduce((x, current) => x + current);
+
+    return totalAp;
 }
+
+console.log(buscarDados(mech.componentes, 'ap'))
+
+// apTotal = buscarDados(mech.componentes, ap)
+// pesoTotal = buscarDados(mech.componentes, peso)
+// //buscarDados(mech.componentes, ap)
+
+// let apTotal = 0
+//     for (let item in mech.componentes){
+//         if (mech.componentes[item].ap != undefined)
+//         apTotal += mech.componentes[item].ap
+//     }
