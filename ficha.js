@@ -10,14 +10,14 @@ const piloto = {
             profissao: 'soldado'
         }
     },
-    
+
     atributos: {
         forca: 1,
         destreza: 2,
         constuicao: 2,
         sabedoria: 0,
-        inteligencia:-1,
-        carisma:3
+        inteligencia: -1,
+        carisma: 3
     },
 
     geral: {
@@ -29,10 +29,10 @@ const piloto = {
         inspiracao: 0
     },
 
-    reacoes:{
+    reacoes: {
         deslocamento: 9,
-        armadura: [8,5],
-        escudo: [2,0]
+        armadura: [8, 5],
+        escudo: [2, 0]
     },
 
     pericias: {
@@ -40,20 +40,20 @@ const piloto = {
     }
 }
 
-piloto.geral.carryweight = piloto.atributos.forca *15,
-piloto.geral.pontosdevida = piloto.geral.dadosdevida * piloto.atributos.constuicao,
+piloto.geral.carryweight = piloto.atributos.forca * 15
+piloto.geral.pontosdevida = piloto.geral.dadosdevida * piloto.atributos.constuicao
 
 piloto.reacoes.iniciativa = piloto.atributos.destreza,
-piloto.reacoes.percepcaopassiva = piloto.atributos.sabedoria + piloto.geral.proficiencia,
-piloto.reacoes.reflexos = 10 + piloto.atributos.destreza + piloto.geral.proficiencia,
-piloto.reacoes.vitalidade = 10 + piloto.atributos.constuicao + piloto.geral.proficiencia,
-piloto.reacoes.psique = 10 + piloto.atributos.inteligencia + piloto.geral.proficiencia,
-piloto.reacoes.protecaocinetica = 10 + piloto.reacoes.armadura[0] + piloto.reacoes.escudo[0],
+    piloto.reacoes.percepcaopassiva = piloto.atributos.sabedoria + piloto.geral.proficiencia
+piloto.reacoes.reflexos = 10 + piloto.atributos.destreza + piloto.geral.proficiencia
+piloto.reacoes.vitalidade = 10 + piloto.atributos.constuicao + piloto.geral.proficiencia
+piloto.reacoes.psique = 10 + piloto.atributos.inteligencia + piloto.geral.proficiencia
+piloto.reacoes.protecaocinetica = 10 + piloto.reacoes.armadura[0] + piloto.reacoes.escudo[0]
 piloto.reacoes.protecaoenergia = 10 + piloto.reacoes.armadura[1] + piloto.reacoes.escudo[1]
 
-function criarPericia(nomeDaPericia,atributoDaPericia,possuiProficiencia = false){
+function criarPericia(nomeDaPericia, atributoDaPericia, possuiProficiencia = false) {
     piloto.pericias[nomeDaPericia] = piloto.atributos[atributoDaPericia]
-    if (possuiProficiencia == true){
+    if (possuiProficiencia == true) {
         piloto.pericias[nomeDaPericia] += piloto.geral.proficiencia
     }
     return nomeDaPericia
@@ -94,8 +94,8 @@ const mech = {
     atributos: {
         destreza: 2,
         sabedoria: 0, //verificar a necessidade deste atributo
-        inteligencia:-1,
-        carisma:3
+        inteligencia: -1,
+        carisma: 3
     },
 
     componentes: {
@@ -112,7 +112,7 @@ const mech = {
             lockonSimultanepFoguetes: 3,
             maxSubunits: 6
         },
-        
+
         bracos: {
             ap: 10,
             protecaoCinetica: 20,
@@ -123,7 +123,7 @@ const mech = {
             storageUnits: 1,
             transicao: 0, //apenas weapon arms
         },
-    
+
         torso: {
             ap: 10,
             protecaoCinetica: 20,
@@ -134,7 +134,7 @@ const mech = {
             armazenamentoDeEnergia: 240,
             //resistenciaJumming: 5,
         },
-    
+
         pernas: {
             ap: 10,
             protecaoCinetica: 20,
@@ -147,7 +147,7 @@ const mech = {
             protecaoAprimorada: 10, //apenas bipé comum
             needsReadyPosition: true //tanques e tetrapods são false
         },
-    
+
         boosters: {
             peso: 30,
             consumoDeEnergia: 20,
@@ -159,7 +159,7 @@ const mech = {
         }
     },
 
-    reacoes:{
+    reacoes: {
         //deslocamento: 9,
     }
 }
@@ -168,7 +168,7 @@ function somarDados(obj, key) {
     var valorDaSoma = 0;
 
     Object.values(obj).forEach(item => {
-        if ("undefined" !== typeof(item[key])) {
+        if ("undefined" !== typeof (item[key])) {
             valorDaSoma += item[key];
         }
     });
@@ -184,7 +184,7 @@ mech.geral.pesoTotal = somarDados(mech.componentes, 'peso') + '/' + mech.compone
 mech.geral.energiaTotal = somarDados(mech.componentes, 'consumoDeEnergia') + '/' + mech.componentes.torso.producaoDeEnergia + '/' + mech.componentes.torso.armazenamentoDeEnergia //alterar o codigo posteriormente, pois está retornando a produção, o valor usado e a capacidade de armazenamento, essa exibição deve ser feita pelo front
 mech.geral.sincronia = 20 //Recebe o valor de 1d20 e funciona como os atributos 20 = +5, 1 = -5... Deve ser apliada no calculo de reflexos.
 
-mech.reacoes.reflexos = 10 + mech.atributos.destreza + piloto.geral.proficiencia,
+mech.reacoes.reflexos = 10 + mech.atributos.destreza + piloto.geral.proficiencia
 mech.reacoes.psique = 10 + mech.atributos.inteligencia + piloto.geral.proficiencia //a psique do mech se refere a proteção contra jamming, hacking, etc
 mech.reacoes.protecaocinetica = somarDados(mech.componentes, 'protecaoCinetica')
 mech.reacoes.protecaoenergia = somarDados(mech.componentes, 'protecaoEnergia')
