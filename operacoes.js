@@ -142,6 +142,8 @@ function receberAtaque(acerto, tipo, dano, lockon = false){ //tipo Cinétio ou E
     }
 }
 
+//É necessario a criação de um log
+
 console.log(apAtual)
 console.log('Inicio')
 receberAtaque(9, 'Cinético', 5, 'pernas')
