@@ -206,3 +206,5 @@ console.log(buscarDados(mech.componentes, 'ap'))
 //         if (mech.componentes[item].ap != undefined)
 //         apTotal += mech.componentes[item].ap
 //     }
+
+//teste de alteração
