@@ -92,9 +92,8 @@ const mech = {
     },
 
     atributos: {
-        forca: 1,
         destreza: 2,
-        sabedoria: 0,
+        sabedoria: 0, //verificar a necessidade deste atributo
         inteligencia:-1,
         carisma:3
     },
@@ -183,7 +182,7 @@ function somarDados(obj, key) {
 mech.geral.apTotal = somarDados(mech.componentes, 'ap')
 mech.geral.pesoTotal = somarDados(mech.componentes, 'peso') + '/' + mech.componentes.pernas.capacidadeDeCarga //alterar o codigo posteriormente, pois está retornando a capacidade e o valor usado, essa exibição deve ser feita pelo front
 mech.geral.energiaTotal = somarDados(mech.componentes, 'consumoDeEnergia') + '/' + mech.componentes.torso.producaoDeEnergia + '/' + mech.componentes.torso.armazenamentoDeEnergia //alterar o codigo posteriormente, pois está retornando a produção, o valor usado e a capacidade de armazenamento, essa exibição deve ser feita pelo front
-mech.geral.sincronia = 20 //funciona como os atributos 20 = +5, 1 = -5...
+mech.geral.sincronia = 20 //Recebe o valor de 1d20 e funciona como os atributos 20 = +5, 1 = -5... Deve ser apliada no calculo de reflexos.
 
 mech.reacoes.reflexos = 10 + mech.atributos.destreza + piloto.geral.proficiencia,
 mech.reacoes.psique = 10 + mech.atributos.inteligencia + piloto.geral.proficiencia //a psique do mech se refere a proteção contra jamming, hacking, etc
