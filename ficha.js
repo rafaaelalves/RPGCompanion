@@ -188,6 +188,3 @@ mech.reacoes.reflexos = 10 + mech.atributos.destreza + piloto.geral.proficiencia
 mech.reacoes.psique = 10 + mech.atributos.inteligencia + piloto.geral.proficiencia //a psique do mech se refere a proteção contra jamming, hacking, etc
 mech.reacoes.protecaocinetica = somarDados(mech.componentes, 'protecaoCinetica')
 mech.reacoes.protecaoenergia = somarDados(mech.componentes, 'protecaoEnergia')
-
-console.log(mech)
-//Teste de funcionamento
