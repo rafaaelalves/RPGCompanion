@@ -190,3 +190,4 @@ mech.reacoes.protecaocinetica = somarDados(mech.componentes, 'protecaoCinetica')
 mech.reacoes.protecaoenergia = somarDados(mech.componentes, 'protecaoEnergia')
 
 console.log(mech)
+//Teste de funcionamento
