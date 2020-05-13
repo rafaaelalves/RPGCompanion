@@ -33,32 +33,11 @@ const piloto = {
         deslocamento: 9,
         armadura: [8,5],
         escudo: [2,0]
-    }
+    },
 
-//     pericias:{
-//         acrobacia: destreza + proficiencia,
-//         arcanismo: inteligencia + proficiencia,
-//         atletismo: forca + proficiencia,
-//         atuacao: carisma + proficiencia,
-//         blefe: carisma + proficiencia,
-//         furtividade: destreza + proficiencia,
-//         historia: inteligencia + proficiencia,
-//         intimidacao: carisma + proficiencia,
-//         intuicao: sabedoria + proficiencia,
-//         investigacao: inteligencia + proficiencia,
-//         medicina: sabedoria + proficiencia,
-//         natureza: inteligencia + proficiencia,
-//         percepcao: sabedoria + proficiencia,
-//         persuasao: carisma + proficiencia,
-//         prestidigitacao: destreza + proficiencia,
-//         religiao: inteligencia + proficiencia,
-//         sobrevivencia: sabedoria + proficiencia,
-//         animal: sabedoria + proficiencia,
-//         computadores: inteligencia + proficiencia,
-//         engenharia: inteligencia + proficiencia,
-//         pilotagem: destreza + proficiencia,
-//         reparo: sabedoria + proficiencia
-//     }
+    pericias: {
+
+    }
 }
 
 piloto.geral.carryweight = piloto.atributos.forca *15,
@@ -72,18 +51,49 @@ piloto.reacoes.psique = 10 + piloto.atributos.inteligencia + piloto.geral.profic
 piloto.reacoes.protecaocinetica = 10 + piloto.reacoes.armadura[0] + piloto.reacoes.escudo[0],
 piloto.reacoes.protecaoenergia = 10 + piloto.reacoes.armadura[1] + piloto.reacoes.escudo[1]
 
+function criarPericia(nomeDaPericia,atributoDaPericia,possuiProficiencia = false){
+    piloto.pericias[nomeDaPericia] = piloto.atributos[atributoDaPericia]
+    if (possuiProficiencia == true){
+        piloto.pericias[nomeDaPericia] += piloto.geral.proficiencia
+    }
+    return nomeDaPericia
+
+}
+
+criarPericia('acrobacia', 'destreza', true)
+criarPericia('arcanismo', 'inteligencia', false)
+criarPericia('atletismo', 'forca', true)
+criarPericia('atuacao', 'carisma', false)
+criarPericia('blefe', 'carisma', false)
+criarPericia('computadores', 'inteligencia', true)
+criarPericia('engenharia', 'inteligencia', true)
+criarPericia('furtividade', 'destreza', false)
+criarPericia('historia', 'inteligencia', false)
+criarPericia('intimidacao', 'carisma', false)
+criarPericia('intuicao', 'sabedoria', false)
+criarPericia('investigacao', 'inteligencia', false)
+criarPericia('lidarComAnimais', 'sabedoria', false)
+criarPericia('medicina', 'sabedoria', false)
+criarPericia('natureza', 'inteligencia', false)
+criarPericia('percepcao', 'sabedoria', false)
+criarPericia('persuasao', 'carisma', false)
+criarPericia('pilotagem', 'destreza', false)
+criarPericia('prestidigitacao', 'destreza', false)
+criarPericia('religiao', 'inteligencia', false)
+criarPericia('sobrevivencia', 'sabedoria', false)
+criarPericia('reparo', 'sabedoria', false)
+
 //----------------------------------------------------------------------------------------------------------------
-var mech = {
+const mech = {
     geral: {
         nível: 1,
-        chassi: 'berserker',
+        chassi: 'Berserker',
         //pontosdevidatemporarios: 0
     },
 
     atributos: {
         forca: 1,
         destreza: 2,
-        constuicao: 2,
         sabedoria: 0,
         inteligencia:-1,
         carisma:3
@@ -130,13 +140,13 @@ var mech = {
             ap: 10,
             protecaoCinetica: 20,
             protecaoEnergia: 10,
-            capacidadeDeCarga: 30,
+            capacidadeDeCarga: 130,
             consumoDeEnergia: 10,
             movimentacao: 9,
             salto: 2, //tanques nao podem saltar
             saltoAprimorado: 0, //apenas bipé invertido
             protecaoAprimorada: 10, //apenas bipé comum
-            readyPosition: true //tanques e tetrapods são false
+            needsReadyPosition: true //tanques e tetrapods são false
         },
     
         boosters: {
@@ -152,59 +162,32 @@ var mech = {
 
     reacoes:{
         //deslocamento: 9,
-        //armadura: [8,5],
-        //escudo: [2,0]
     }
 }
 
-mech.geral.carryweight = mech.atributos.forca *150,
-//mech.geral.pontosdevida = mech.geral.dadosdevida * mech.atributos.constuicao,
+function somarDados(obj, key) {
+    var valorDaSoma = 0;
 
-mech.reacoes.iniciativa = mech.atributos.destreza,
-//mech.reacoes.percepcaopassiva = mech.atributos.sabedoria + piloto.geral.proficiencia, //este item deve ser excluido ou deve ser tirado do piloto
-mech.reacoes.reflexos = 10 + mech.atributos.destreza + piloto.geral.proficiencia,
-mech.reacoes.vitalidade = 10 + mech.atributos.constuicao + piloto.geral.proficiencia,
-mech.reacoes.psique = 10 + mech.atributos.inteligencia + piloto.geral.proficiencia //a psique do mech se refere a proteção contra jamming, hacking, etc
-//mech.reacoes.protecaocinetica = 10 + mech.reacoes.armadura[0] + mech.reacoes.escudo[0],
-//mech.reacoes.protecaoenergia = 10 + mech.reacoes.armadura[1] + mech.reacoes.escudo[1]
+    Object.values(obj).forEach(item => {
+        if ("undefined" !== typeof(item[key])) {
+            valorDaSoma += item[key];
+        }
+    });
+
+    return valorDaSoma;
+}
 
 //console.log(mech.componentes.cabeca.hasOwnProperty('ap'))
 //console.log(mech.componentes.cabeca.ap)
 
-// function buscarDados(onde, oque){
-//     for (let item in onde){
-//         if (item.hasOwnProperty(oque)){
-//             console.log(item.oque)
-//         }else {
-//             console.log(item, 'não possui', oque)
-//         }
-//     }
-// }
+mech.geral.apTotal = somarDados(mech.componentes, 'ap')
+mech.geral.pesoTotal = somarDados(mech.componentes, 'peso') + '/' + mech.componentes.pernas.capacidadeDeCarga //alterar o codigo posteriormente, pois está retornando a capacidade e o valor usado, essa exibição deve ser feita pelo front
+mech.geral.energiaTotal = somarDados(mech.componentes, 'consumoDeEnergia') + '/' + mech.componentes.torso.producaoDeEnergia + '/' + mech.componentes.torso.armazenamentoDeEnergia //alterar o codigo posteriormente, pois está retornando a produção, o valor usado e a capacidade de armazenamento, essa exibição deve ser feita pelo front
+mech.geral.sincronia = 20 //funciona como os atributos 20 = +5, 1 = -5...
 
-function buscarDados(obj, key) {
-    var totalAp = [];
+mech.reacoes.reflexos = 10 + mech.atributos.destreza + piloto.geral.proficiencia,
+mech.reacoes.psique = 10 + mech.atributos.inteligencia + piloto.geral.proficiencia //a psique do mech se refere a proteção contra jamming, hacking, etc
+mech.reacoes.protecaocinetica = somarDados(mech.componentes, 'protecaoCinetica')
+mech.reacoes.protecaoenergia = somarDados(mech.componentes, 'protecaoEnergia')
 
-    Object.values(obj).forEach(item => {
-        if ("undefined" !== typeof(item[key])) {
-            totalAp.push(item[key]);
-        }
-    });
-
-    totalAp = totalAp.reduce((x, current) => x + current);
-
-    return totalAp;
-}
-
-console.log(buscarDados(mech.componentes, 'ap'))
-
-// apTotal = buscarDados(mech.componentes, ap)
-// pesoTotal = buscarDados(mech.componentes, peso)
-// //buscarDados(mech.componentes, ap)
-
-// let apTotal = 0
-//     for (let item in mech.componentes){
-//         if (mech.componentes[item].ap != undefined)
-//         apTotal += mech.componentes[item].ap
-//     }
-
-//teste de alteração
+console.log(mech)
