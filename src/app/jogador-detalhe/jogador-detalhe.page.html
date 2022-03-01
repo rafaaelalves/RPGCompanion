@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ user?.name ?? 'Novo Jogador' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <!-- <form [formGroup]="jogadorForm" (ngSubmit)="onSubmit()">
+      <p>
+        <label for="name">Nome </label>
+        <input type="text" id="name" name="name" formControlName="name">
+      </p>
+
+      <p>
+        <label for="emnail">Email </label>
+        <input type="text" id="emnail" name="emnail" formControlName="emnail">
+      </p>
+    </form>  -->
+  </div>
+</ion-content>

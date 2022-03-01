@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Rafa",
+        "email": "rafa@ionic.com"
+    },
+    {
+        "id": 2,
+        "name": "Vitor",
+        "email": "vitor@ionic.com"
+    },
+    {
+        "id": 3,
+        "name": "Guts",
+        "email": "guts@ionic.com"
+    },
+    {
+        "id": 4,
+        "name": "Ramelão da Placa",
+        "email": "ramelaoPlaca@ionic.com"
+    }
+]
