@@ -23,6 +23,7 @@ export class PersonagensPage implements OnInit {
   getCharacters(){
     this.httpClient.get("../../assets/items_json/personagens.json").subscribe((response:Character[]) => {
       this.characters = response;
+      console.log(this.characters)
     });
   }
 
