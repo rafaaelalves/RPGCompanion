@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { User } from '../shared/models/User';
 
@@ -20,15 +20,16 @@ export class JogadorDetalhePage implements OnInit {
     this.router.params.subscribe(params => this.routerParams = params);
   }
 
-  // jogadorForm = new FormGroup({
-  //   name: new FormControl(),
-  //   email: new FormControl()
-  // });
+  playerForm = new FormGroup({
+    name: new FormControl('', Validators.required)
+  });
 
   ngOnInit() {
     if (this.routerParams.id) {
       this.getJogador(this.routerParams.id);
     }
+
+    console.log(this.playerForm.value);
   }
 
   getJogador(id?: number) {

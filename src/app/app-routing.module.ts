@@ -12,14 +12,15 @@ const routes: Routes = [
     loadChildren: () => import('./jogadores/jogadores.module').then( m => m.JogadoresPageModule)
   },
   {
+    path: 'jogador-detalhe/:id',
+    loadChildren: () => import('./jogador-detalhe/jogador-detalhe.module').then( m => m.JogadorDetalhePageModule)
+  },
+  {
     path: 'personagens',
     loadChildren: () => import('./personagens/personagens.module').then( m => m.PersonagensPageModule)
   },
   {
-    path: 'jogador-detalhe/:id',
-    loadChildren: () => import('./jogador-detalhe/jogador-detalhe.module').then( m => m.JogadorDetalhePageModule)
-  },  {
-    path: 'personagem-detalhe',
+    path: 'personagem-detalhe/:id',
     loadChildren: () => import('./personagem-detalhe/personagem-detalhe.module').then( m => m.PersonagemDetalhePageModule)
   }
 
