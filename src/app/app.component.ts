@@ -14,7 +14,6 @@ export class AppComponent {
   } as User;
 
   public appPages = [
-    { title: 'Novo Jogador', url: '/jogador-detalhe/0', icon: 'paper-plane' },
     { title: 'Jogadores', url: '/jogadores', icon: 'paper-plane' },
     { title: 'Personagens', url: '/personagens', icon: 'paper-plane' }
   ];

@@ -20,18 +20,18 @@ export class PersonagensPage implements OnInit {
     this.getCharacters();
   }
 
-  getCharacters(){
+  getCharacters() {
     this.httpClient.get("../../assets/items_json/personagens.json").subscribe((response:Character[]) => {
       this.characters = response;
       console.log(this.characters)
     });
   }
 
-  deleteCharacter(id:number){
+  deleteCharacter(id:number) {
     this.characters = this.characters.filter(item => item.id !=id);
   }
 
-  editCharacter(path?: number){
+  editCharacter(path?: number) {
     this.router.navigate(['personagem-detalhe', path ?? 0]);
   }
 }
