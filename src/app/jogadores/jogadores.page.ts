@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { User } from '../shared/models/User';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-jogadores',
   templateUrl: './jogadores.page.html',
   styleUrls: ['./jogadores.page.scss'],
 })
+
 export class JogadoresPage implements OnInit {
   public users: User[];
 
   constructor(
-    private router: Router,
+    public navCtrl: NavController,
     private httpClient: HttpClient
   ) {}
 
@@ -35,7 +36,7 @@ export class JogadoresPage implements OnInit {
     console.log(this.users)
   }
 
-  editJogador(path?: number) {
-    this.router.navigate(['jogador-detalhe', path ?? 0]);
+  editJogador(id?: number) {
+    this.navCtrl.navigateForward(['jogador-detalhe', id ?? 0])
   }
 }

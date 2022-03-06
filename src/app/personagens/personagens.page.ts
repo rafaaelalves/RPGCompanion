@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Character } from '../shared/models/Character';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-personagens',
@@ -12,9 +12,9 @@ export class PersonagensPage implements OnInit {
   public characters: Character[];
 
   constructor(
-    private router: Router,
+    public navCtrl: NavController,
     private httpClient: HttpClient
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getCharacters();
@@ -32,6 +32,6 @@ export class PersonagensPage implements OnInit {
   }
 
   editCharacter(path?: number) {
-    this.router.navigate(['personagem-detalhe', path ?? 0]);
+    this.navCtrl.navigateForward(['personagem-detalhe', path ?? 0]);
   }
 }

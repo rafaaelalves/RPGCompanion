@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Início</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-button type="button" color="success" expand="block" (click)="goNavigate('jogadores')">Jogadores</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button type="button" color="success" expand="block" (click)="goNavigate('personagens')">Personagens</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

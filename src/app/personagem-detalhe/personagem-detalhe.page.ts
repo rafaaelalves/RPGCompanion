@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { IonRouterOutlet, NavController } from '@ionic/angular';
 import { Character } from '../shared/models/Character';
 
 @Component({
@@ -15,6 +16,8 @@ export class PersonagemDetalhePage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    @Optional() private routerOutlet: IonRouterOutlet,
+    private navCtrl: NavController,
     private router: Router,
     private httpClient: HttpClient,
     public formBuilder: FormBuilder
@@ -32,6 +35,15 @@ export class PersonagemDetalhePage implements OnInit {
     }
   }
 
+  goBack() {
+    if (this.routerOutlet && this.routerOutlet.canGoBack()) {
+      this.navCtrl.setDirection("back");
+      this.routerOutlet.pop();
+    } else {
+      this.navCtrl.navigateBack("/home");
+    }
+  }
+
   getCharacter(id?: number) {
     this.httpClient.get("../assets/items_json/personagens.json").subscribe((response:Character[]) => {
       this.characterForm.patchValue(response.filter(item => item.id == id)[0]);
@@ -41,6 +53,6 @@ export class PersonagemDetalhePage implements OnInit {
 
   save() {
     console.log(this.characterForm.value)
-    this.router.navigate(['personagens']);
+    this.goBack();
   }
 }

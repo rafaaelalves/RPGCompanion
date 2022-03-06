@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { User } from '../shared/models/User';
+import { ActivatedRoute, Params } from '@angular/router';
+import { IonRouterOutlet, NavController } from "@ionic/angular";
+
 
 @Component({
   selector: 'app-jogador-detalhe',
@@ -15,7 +17,8 @@ export class JogadorDetalhePage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    @Optional() private routerOutlet: IonRouterOutlet,
+    private navCtrl: NavController,
     private httpClient: HttpClient,
     public formBuilder: FormBuilder
   ) { 
@@ -35,6 +38,15 @@ export class JogadorDetalhePage implements OnInit {
     console.log(this.userForm.value);
   }
 
+  goBack() {
+    if (this.routerOutlet && this.routerOutlet.canGoBack()) {
+      this.navCtrl.setDirection("back");
+      this.routerOutlet.pop();
+    } else {
+      this.navCtrl.navigateBack("/home");
+    }
+  }
+
   getJogador(id?: number) {
     this.httpClient.get("../../assets/items_json/jogadores.json").subscribe((response: User[]) => {
       this.userForm.patchValue(response.filter(item => item.id == id)[0]);
@@ -44,6 +56,6 @@ export class JogadorDetalhePage implements OnInit {
 
   save() {
     console.log(this.userForm.value)
-    this.router.navigate(['jogadores']);
+    this.goBack();
   }
 }

@@ -14,6 +14,7 @@ export class AppComponent {
   } as User;
 
   public appPages = [
+    { title: 'Início', url: '/home', icon: 'home' },
     { title: 'Jogadores', url: '/jogadores', icon: 'paper-plane' },
     { title: 'Personagens', url: '/personagens', icon: 'paper-plane' }
   ];
