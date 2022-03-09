@@ -1,19 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button text="Voltar"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ user?.name ?? 'Novo Jogador' }}</ion-title>
+    <ion-title>{{ userForm.value.name ?? 'Novo Jogador' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div>
-    <!-- <form [formGroup]="jogadorForm" (ngSubmit)="onSubmit()">
-      <p>
-        <label for="name">Nome </label>
-        <input type="text" id="name" name="name" formControlName="name">
-      </p>
-    </form>  -->
-  </div>
+  <form [formGroup]="userForm" (ngSubmit)="save()">
+    <ion-item lines="full">
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="success" expand="block" [disabled]="userForm.invalid">Salvar</ion-button>
+      </ion-col>
+    </ion-row>
+    </form> 
 </ion-content>
