@@ -27,8 +27,16 @@ export class PersonagemDetalhePage implements OnInit {
 
   ngOnInit() {
     this.characterForm = this.formBuilder.group({
-      name: ['', Validators.required]
-    }); 
+      name: ['', Validators.required],
+      saude: ['', Validators.required],
+      resistencia: ['', Validators.required],
+      tiro: ['', Validators.required],
+      forca: ['', Validators.required],
+      furtividade: ['', Validators.required],
+      pilotagem: ['', Validators.required],
+      direcao: ['', Validators.required],
+      folego: ['', Validators.required]
+    });
 
     if (this.routerParams.id) {
       this.getCharacter(this.routerParams.id);

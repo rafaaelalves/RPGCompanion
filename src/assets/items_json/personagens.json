@@ -1,19 +1,51 @@
 [
   {
       "id": 1,
-      "name": "Michael"
+      "name": "Michael",
+      "saude": 3 ,
+      "resistencia": 1,
+      "tiro": 2,
+      "forca": 1,
+      "furtividade": 2,
+      "pilotagem": 1,
+      "direcao": 3,
+      "folego": 1
   },
   {
       "id": 2,
-      "name": "Trevor"
+      "name": "Trevor",
+      "saude": 3 ,
+      "resistencia": 1,
+      "tiro": 2,
+      "forca": 1,
+      "furtividade": 2,
+      "pilotagem": 1,
+      "direcao": 3,
+      "folego": 1
   },
   {
       "id": 3,
-      "name": "Franklin"
+      "name": "Franklin",
+      "saude": 3 ,
+      "resistencia": 1,
+      "tiro": 2,
+      "forca": 1,
+      "furtividade": 2,
+      "pilotagem": 1,
+      "direcao": 3,
+      "folego": 1
 
   },
   {
       "id": 4,
-      "name": "Lamar"
+      "name": "Lamar",
+      "saude": 3 ,
+      "resistencia": 1,
+      "tiro": 2,
+      "forca": 1,
+      "furtividade": 2,
+      "pilotagem": 1,
+      "direcao": 3,
+      "folego": 1
   }
 ]
